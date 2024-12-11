@@ -28,3 +28,11 @@ if response.status_code == 200:
                 num = cols[1].text.strip()
                 currency = cols[2].text.strip()
                 data.append([code, num, currency])
+        
+        # Создание DataFrame для структурирования данных
+        df = pd.DataFrame(data, columns=["Code", "Num", "Currency"])
+        print(df)
+    else:
+        print("Таблица с данными о валютах не найдена.")
+else:
+    print(f"Ошибка запроса: {response.status_code}")
