@@ -9,3 +9,13 @@ response = requests.get(url)
 
 # Проверка статуса запроса
 if response.status_code == 200:
+    # Создание объекта BeautifulSoup
+    soup = BeautifulSoup(response.text, 'html.parser')
+    
+    # Поиск таблицы с данными о валютах
+    table = soup.find("table", {"class": "wikitable sortable"})
+    
+    # Проверка наличия таблицы
+    if table:
+        rows = table.find_all("tr")
+        data = []
